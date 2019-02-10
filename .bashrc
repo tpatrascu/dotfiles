@@ -13,7 +13,7 @@ alias ki='k -n infra '
 alias k1='k -n 1pt '
 
 function kiclogs() {
-  kubectl -n $2 get po $1 -o jsonpath={.spec.initContainers[*].name} | xargs -d' ' -I CONTAINER kubectl -n $2 logs --limit-bytes=${3:-2000} $1 -c CONTAINER
+  kubectl -n $2 get po $1 -o jsonpath={.spec.initContainers[*].name} | xargs -d' ' -I CONTAINER kubectl -n $2 logs --tail=${3:-10} $1 -c CONTAINER
 }
 
 function pokill() {
